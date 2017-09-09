@@ -1,6 +1,6 @@
 Report       : Lights-controller
 Date         : 09-09-2017
-Time         : 12:15:10
+Time         : 12:18:58
 
 Compiler     : BASCOM-AVR LIBRARY V 2.0.7.8
 Processor    : TINY2313
@@ -8,9 +8,9 @@ SRAM         : 80 hex
 EEPROM       : 80 hex
 ROMSIZE      : 800 hex
 
-ROMIMAGE     : 472 hex  -> Will fit into ROM
-ROMIMAGE     :  1138 dec
-FLASH USED   :  55  %
+ROMIMAGE     : 5E6 hex  -> Will fit into ROM
+ROMIMAGE     :  1510 dec
+FLASH USED   :  73  %
 BAUD         : 9600 Baud
 XTAL         : 4000000 Hz
 BAUD error   : 0.16%
@@ -21,7 +21,7 @@ S-Stacksize  : 10 hex
 S-Stackstart : B8 hex
 Framesize    : 20 hex
 Framestart   : 88 hex
-Space left   :  20  dec
+Space left   :  25  dec
 
 LCD DB7      : PORTB.7
 LCD DB6      : PORTB.6
@@ -88,16 +88,21 @@ COMPARE1B                        Word              0048          72
 PWM0A                            Byte              0056          86 
 PWM0B                            Byte              005C          92 
 ERR                              Bit [2]           0006          6 
-UTGANG1                          Integer           0060          96 
-UTGANG2                          Integer           0062          98 
-UTGANG3                          Integer           0064          100 
-UT1                              Integer           0066          102 
-UT2                              Integer           0068          104 
-UT3                              Integer           006A          106 
-LIFESIGNAL                       Integer           006C          108 
-A                                Byte              006E          110 
-ALT_AV                           Integer           006F          111 
-LYS_TIMER                        Integer           0071          113 
+UTGANG1                          Byte              0060          96 
+UTGANG2                          Byte              0061          97 
+UTGANG3                          Byte              0062          98 
+UT1                              Bit [7]           0063          99 
+UT2                              Bit [6]           0063          99 
+UT3                              Bit [5]           0063          99 
+LED                              Byte              0064          100 
+LIFESIGNAL                       Byte              0065          101 
+IR_TIMER                         Byte              0066          102 
+ALT_AV                           Integer           0067          103 
+LYS_TIMER                        Integer           0069          105 
+LED_TIMER                        Byte              006B          107 
+LED1_TIMER                       Byte              006C          108 
+EEPROM_SAVE                      Byte              006D          109 
+EEPROM_VALUE                     EEPROM Byte       0000          0 
 
 --------------------------------------------------------------------------------
 Constant                         Value
@@ -605,3 +610,4 @@ PWM1B                            not used
 PWM0A                            not used
 PWM0B                            not used
 
+When reading the PIN, PINX should be used?  in line  0 

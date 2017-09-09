@@ -1,6 +1,6 @@
 Report       : Lights-controller
 Date         : 09-09-2017
-Time         : 12:11:17
+Time         : 12:15:10
 
 Compiler     : BASCOM-AVR LIBRARY V 2.0.7.8
 Processor    : TINY2313
@@ -8,20 +8,20 @@ SRAM         : 80 hex
 EEPROM       : 80 hex
 ROMSIZE      : 800 hex
 
-ROMIMAGE     : 3AA hex  -> Will fit into ROM
-ROMIMAGE     :  938 dec
-FLASH USED   :  45  %
+ROMIMAGE     : 472 hex  -> Will fit into ROM
+ROMIMAGE     :  1138 dec
+FLASH USED   :  55  %
 BAUD         : 9600 Baud
-XTAL         : 8000000 Hz
+XTAL         : 4000000 Hz
 BAUD error   : 0.16%
 
 Stack start  : DF hex
-Stack size   : 20 hex
-S-Stacksize  : 8 hex
-S-Stackstart : C0 hex
-Framesize    : 18 hex
-Framestart   : A0 hex
-Space left   :  48  dec
+Stack size   : 28 hex
+S-Stacksize  : 10 hex
+S-Stackstart : B8 hex
+Framesize    : 20 hex
+Framestart   : 88 hex
+Space left   :  20  dec
 
 LCD DB7      : PORTB.7
 LCD DB6      : PORTB.6
@@ -96,6 +96,8 @@ UT2                              Integer           0068          104
 UT3                              Integer           006A          106 
 LIFESIGNAL                       Integer           006C          108 
 A                                Byte              006E          110 
+ALT_AV                           Integer           006F          111 
+LYS_TIMER                        Integer           0071          113 
 
 --------------------------------------------------------------------------------
 Constant                         Value
@@ -506,7 +508,7 @@ RSTDISBL                         7
 SELFPRGEN                        0
 _DATE_FORMAT                     0
 _DATE_SEPARATOR                  92
-_GSTRBUF                         160
+_GSTRBUF                         136
 _DECIMALPOINT                    46
 _RTSCTS                          0
 _RTSCTS1                         0
@@ -522,7 +524,7 @@ _ERAMSIZE                        128
 _SIM                             0
 _HUGE                            0
 _BASE                            1
-_XTAL                            8000000
+_XTAL                            4000000
 _BUILD                           20781
 _COMPILER                        90
 _HWMUL                           0
@@ -537,9 +539,9 @@ _PRDWORD                         0
 _PBIN_EXTENDED                   0
 _BIGSTRINGS                      0
 _FPROTECT                        0
-_HWSTACK_LOW                     &H00BF
-_SWSTACK_LOW                     &H00B8
-_FRAME_HIGH                      &H00B9
+_HWSTACK_LOW                     &H00B7
+_SWSTACK_LOW                     &H00A8
+_FRAME_HIGH                      &H00A9
 _XMEGA                           0
 CBITINFINITY                     0
 CMBITINFINITY                    1

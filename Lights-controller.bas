@@ -1,12 +1,12 @@
 '--------------------------------------------------------------
 '                   Thomas Jensen | uCtrl.io
 '--------------------------------------------------------------
-'  file: AVR_LIGHTS_CONTROLLER_v1.0
-'  date: 12/03/2006
+'  file: AVR_LIGHTS_CONTROLLER_v1.1
+'  date: 24/05/2006
 '--------------------------------------------------------------
 
 $regfile = "attiny2313.dat"
-$crystal = 8000000
+$crystal = 4000000
 Config Portd = Input
 Config Portb = Output
 Config Watchdog = 1024
@@ -19,6 +19,8 @@ Dim Ut2 As Integer
 Dim Ut3 As Integer
 Dim Lifesignal As Integer
 Dim A As Byte
+Dim Alt_av As Integer
+Dim Lys_timer As Integer
 
 Lifesignal = 21
 Utgang1 = 0
@@ -27,6 +29,8 @@ Utgang3 = 0
 Ut1 = 0
 Ut2 = 0
 Ut3 = 0
+Alt_av = 0
+Lys_timer = 0
 
 Portb = 0
 
@@ -45,6 +49,7 @@ Portb = 0
 Main:
 'output1
 If Pind.0 = 0 Then
+   Alt_av = 0
    Utgang1 = Utgang1 + 1
    Portb.3 = Portb.0
    If Utgang1 = 11 And Ut1 = 0 Then
@@ -57,6 +62,7 @@ If Pind.0 = 0 Then
 
 'output2
 If Pind.1 = 0 Then
+   Alt_av = 0
    Utgang2 = Utgang2 + 1
    Portb.4 = Portb.1
    If Utgang2 = 11 And Ut2 = 0 Then
@@ -69,6 +75,7 @@ If Pind.1 = 0 Then
 
 'output3
 If Pind.2 = 0 Then
+   Alt_av = 0
    Utgang3 = Utgang3 + 1
    Portb.5 = Portb.2
    If Utgang3 = 11 And Ut3 = 0 Then
@@ -104,24 +111,43 @@ If Pind.3 = 0 Then
    Portb.5 = 1
 End If
 
-'flashing grønn
+'all off 45 sec
 If Pind.4 = 0 Then
+   Alt_av = 450
    Waitms 50
    Portb.3 = 1
-End If
-
-'flashing rød
-If Pind.5 = 0 Then
-   Waitms 50
    Portb.4 = 1
+   Portb.5 = 1
 End If
 
-'turn everything off
+'auto lights on
+If Pind.5 = 0 Then
+   Portb.0 = 1
+   Lys_timer = 600
+End If
+
+'all off
 If Pind.6 = 0 Then
    Portb.0 = 0
    Portb.1 = 0
    Portb.2 = 0
+   Lys_timer = 0
 End If
+
+'lights timer
+If Lys_timer > 0 Then Lys_timer = Lys_timer - 1
+If Lys_timer = 1 Then
+   Portb.0 = 0
+   End If
+
+'all off
+If Alt_av > 0 Then Alt_av = Alt_av - 1
+If Alt_av = 1 Then
+   Portb.0 = 0
+   Portb.1 = 0
+   Portb.2 = 0
+   Lys_timer = 0
+   End If
 
 'lifesignal
 If Lifesignal > 0 Then Lifesignal = Lifesignal - 1
